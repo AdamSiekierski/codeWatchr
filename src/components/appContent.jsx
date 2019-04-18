@@ -7,9 +7,11 @@ const StyledAppContent = styled.div`
   padding: 20px 0 0 0;
 `;
 
-const AppContent = () => (
+const AppContent = props => (
   <StyledAppContent>
-    Hello World!
+    {
+      props.children // eslint-disable-line
+    }
   </StyledAppContent>
 );
 

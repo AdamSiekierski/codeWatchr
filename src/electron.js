@@ -18,8 +18,7 @@ const createWindow = async () => {
     titleBarStyle: 'hidden',
   });
 
-  // and load the index.html of the app.
-  mainWindow.loadURL(`file://${__dirname}/static/index.html`);
+  mainWindow.loadFile('./src/static/index.html');
 
   // Open the DevTools.
   if (isDevMode) {

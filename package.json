@@ -1,8 +1,8 @@
 {
   "name": "codewatchr",
-  "productName": "codewatchr",
-  "version": "1.0.0",
-  "description": "My Electron application description",
+  "productName": "codeWatchr",
+  "version": "0.1.0",
+  "description": "An app that maintains your coding sessions. Time, lines of code, etc. Still in development",
   "main": "src/electron.js",
   "scripts": {
     "start": "electron-forge start",
@@ -12,7 +12,7 @@
     "lint": "eslint --cache --color --ext .jsx,.js src"
   },
   "keywords": [],
-  "author": "adam",
+  "author": "Adam Siekierski",
   "license": "MIT",
   "config": {
     "forge": {
@@ -37,11 +37,11 @@
       "electronInstallerDebian": {},
       "electronInstallerRedhat": {},
       "github_repository": {
-        "owner": "",
-        "name": ""
+        "owner": "AdamSiekierski",
+        "name": "codeWatchr"
       },
       "windowsStoreConfig": {
-        "packageName": "",
+        "packageName": "codewatchr",
         "name": "codewatchr"
       }
     }
@@ -50,13 +50,19 @@
     "@hot-loader/react-dom": "16.8.6",
     "electron": "^4.0.0",
     "electron-compile": "^6.4.4",
+    "electron-compilers": "^5.9.0",
     "electron-devtools-installer": "^2.1.0",
     "electron-squirrel-startup": "^1.0.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-hot-loader": "^4.8.4",
     "react-router-dom": "^5.0.0",
+    "semantic-ui-react": "^0.86.0",
     "styled-components": "^4.2.0",
+    "stylelint": "^10.0.1",
+    "stylelint-config-standard": "^18.3.0",
+    "stylelint-config-styled-components": "^0.1.1",
+    "stylelint-processor-styled-components": "^1.6.0",
     "typography": "^0.16.19"
   },
   "devDependencies": {

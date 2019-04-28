@@ -29,11 +29,36 @@ const WatchButton = styled.button`
 `;
 
 class Watch extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isWatchingStarted: false,
+    };
+
+    this.counter = React.createRef();
+
+    this.startCodeWatching = () => {
+      console.log('Started');
+      this.setState({ isWatchingStarted: true });
+      this.counter.current.startCounting();
+    };
+
+    this.stopCodeWatching = () => {
+      console.log('Stopped');
+      this.setState({ isWatchingStarted: false });
+      this.counter.current.stopCounting();
+    };
+  }
+
   render() {
     return (
       <HomeWrapper>
-        <TimeCounter />
-        <WatchButton type="button"> Start </WatchButton>
+        <TimeCounter ref={this.counter} />
+        <WatchButton type="button" onClick={this.state.isWatchingStarted ? this.stopCodeWatching : this.startCodeWatching}>
+          {
+            this.state.isWatchingStarted ? 'Stop' : 'Start'
+          }
+        </WatchButton>
       </HomeWrapper>
     );
   }

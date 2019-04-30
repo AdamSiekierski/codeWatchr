@@ -17,19 +17,39 @@ const StyledWrapper = styled.div`
   overflow: hidden;
 `;
 
-const App = () => (
-  <Router>
-    <StyledWrapper>
-      <WindowDragRegion />
-      <SideBar />
-      <AppContent>
-        <Switch>
-          <Route path="/history" component={History} />
-          <Route component={Watch} />
-        </Switch>
-      </AppContent>
-    </StyledWrapper>
-  </Router>
-);
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      isWatchingStarted: false,
+    };
+
+    this.handleWatching = this.handleWatching.bind(this);
+  }
+
+  handleWatching(status) {
+    this.setState({
+      isWatchingStarted: status,
+    });
+  }
+
+  render() {
+    return (
+      <Router>
+        <StyledWrapper>
+          <WindowDragRegion />
+          <SideBar hidden={this.state.isWatchingStarted} />
+          <AppContent>
+            <Switch>
+              <Route path="/history" component={History} />
+              <Route render={() => <Watch parentWatchingCallback={this.handleWatching} />} />
+            </Switch>
+          </AppContent>
+        </StyledWrapper>
+      </Router>
+    );
+  }
+}
 
 export default hot(module)(App);

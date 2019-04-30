@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 import TimeCounter from '../components/timeCounter';
 
@@ -41,12 +42,14 @@ class Watch extends React.Component {
       console.log('Started');
       this.setState({ isWatchingStarted: true });
       this.counter.current.startCounting();
+      this.props.parentWatchingCallback(true); // eslint-disable-line
     };
 
     this.stopCodeWatching = () => {
       console.log('Stopped');
       this.setState({ isWatchingStarted: false });
       this.counter.current.stopCounting();
+      this.props.parentWatchingCallback(false); // eslint-disable-line
     };
   }
 

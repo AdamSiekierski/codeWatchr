@@ -1,13 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 const StyledSideBar = styled.div`
-  min-width: 250px;
-  max-width: 50%;
-  resize: horizontal;
+  width: ${props => (props.hidden ? '0' : '250px')}; 
   height: 100vh;
-  overflow: auto;
   background-color: #222;
   border-right: 1px solid #111;
 `;
@@ -32,13 +30,21 @@ const Title = styled.h3`
   text-align: center;
 `;
 
-const SideBar = () => (
-  <StyledSideBar>
+const SideBar = props => (
+  <StyledSideBar hidden={props.hidden}>
     <Title> codeWatchr 👨🏽‍💻 </Title> {/* eslint-disable-line */}
     <HR />
     <MenuItem to="/">Watch</MenuItem>
     <MenuItem to="/history">History</MenuItem>
   </StyledSideBar>
 );
+
+SideBar.propTypes = {
+  hidden: PropTypes.bool,
+};
+
+SideBar.defaultProps = {
+  hidden: false,
+};
 
 export default SideBar;

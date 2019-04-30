@@ -9,6 +9,7 @@
     "react/prefer-stateless-function": 0,
     "react/no-unused-state": 0,
     "react/destructuring-assignment": 0,
-    "no-plusplus": 0
+    "no-plusplus": 0,
+    "react/jsx-one-expression-per-line": 0
   }
 }

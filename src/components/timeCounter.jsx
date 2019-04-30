@@ -35,7 +35,9 @@ class TimeCounter extends React.Component {
   }
 
   stopCounting() {
-    this.setState({ isCounting: false });
+    this.setState({
+      isCounting: false,
+    });
     this.stopwatch.stop();
   }
 

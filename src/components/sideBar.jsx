@@ -2,12 +2,21 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import util from 'electron-util';
 
 const StyledSideBar = styled.div`
   width: ${props => (props.hidden ? '0' : '250px')}; 
   height: 100vh;
-  background-color: #222;
-  border-right: 1px solid #111;
+  background-color: ${util.platform({
+    macos: 'none',
+    windows: '#222',
+    linux: '#222',
+  })};
+  border: ${util.platform({
+    macos: 'none',
+    windows: '1px solid #111',
+    linux: '1px solid #111',
+  })};
 `;
 
 const HR = styled.hr`
@@ -33,7 +42,13 @@ const Title = styled.h3`
 const SideBar = props => (
   <StyledSideBar hidden={props.hidden}>
     <Title> codeWatchr 👨🏽‍💻 </Title> {/* eslint-disable-line */}
-    <HR />
+    {
+      util.platform({
+        macos: '',
+        windows: <HR />,
+        linux: <HR />,
+      })
+    }
     <MenuItem to="/">Watch</MenuItem>
     <MenuItem to="/history">History</MenuItem>
   </StyledSideBar>

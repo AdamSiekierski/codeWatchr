@@ -1,9 +1,8 @@
 import { app, BrowserWindow } from 'electron';
 import installExtension, { REACT_DEVELOPER_TOOLS } from 'electron-devtools-installer';
 import { enableLiveReload } from 'electron-compile';
+import util from 'electron-util';
 
-// Keep a global reference of the window object, if you don't, the window will
-// be closed automatically when the JavaScript object is garbage collected.
 let mainWindow;
 
 const isDevMode = process.execPath.match(/[\\/]electron/);
@@ -16,6 +15,12 @@ const createWindow = async () => {
     width: 800,
     height: 600,
     titleBarStyle: 'hidden',
+    frame: util.platform({
+      macos: false,
+      windows: true,
+      linux: true,
+    }),
+    vibrancy: 'ultra-dark',
   });
 
   mainWindow.loadFile('./src/static/index.html');

@@ -1,17 +1,25 @@
 import React from 'react';
 import styled from 'styled-components';
-import FileWatcher from './watchers/fileWatcherTemplate';
+
+import AddedLinesWatcher from './watchers/addedLinesWatcher';
+import ChangedFilesWatcher from './watchers/changedFilesWatcher';
+import CommitsMadeWatcher from './watchers/commitsMadeWatcher';
 
 const FileWatchersWrapper = styled.div`
-
+  display: flex;
+  padding-top: 25px;
 `;
 
-const FileWatchers = () => (
-  <FileWatchersWrapper>
-    <FileWatcher label="Changed files" />
-    <FileWatcher label="Added lines" />
-    <FileWatcher label="Commits made" />
-  </FileWatchersWrapper>
-);
+class FileWatchers extends React.Component {
+  render() {
+    return (
+      <FileWatchersWrapper>
+        <CommitsMadeWatcher />
+        <AddedLinesWatcher />
+        <ChangedFilesWatcher dirPath="./" />
+      </FileWatchersWrapper>
+    );
+  }
+}
 
 export default FileWatchers;

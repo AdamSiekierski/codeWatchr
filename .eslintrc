@@ -10,6 +10,7 @@
     "react/no-unused-state": 0,
     "react/destructuring-assignment": 0,
     "no-plusplus": 0,
-    "react/jsx-one-expression-per-line": 0
+    "react/jsx-one-expression-per-line": 0,
+    "arrow-body-style": 0
   }
 }

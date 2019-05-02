@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import PropTypes from 'prop-types';
 
 import TimeCounter from '../components/timeCounter';
+import FileWatchers from '../components/fileWatchers';
 
 const HomeWrapper = styled.div`
   display: flex;
@@ -24,6 +24,7 @@ const WatchButton = styled.button`
   font-weight: bold;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
+
   :hover {
     background-color: #253e5e;
   }
@@ -62,6 +63,7 @@ class Watch extends React.Component {
             this.state.isWatchingStarted ? 'Stop' : 'Start'
           }
         </WatchButton>
+        <FileWatchers />
       </HomeWrapper>
     );
   }

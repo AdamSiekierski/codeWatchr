@@ -11,6 +11,7 @@
     "react/destructuring-assignment": 0,
     "no-plusplus": 0,
     "react/jsx-one-expression-per-line": 0,
-    "arrow-body-style": 0
+    "arrow-body-style": 0,
+    "global-require": 0
   }
 }

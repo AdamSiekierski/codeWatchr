@@ -1,7 +1,7 @@
 import React from 'react';
 import FileWatcherTemplate from './fileWatcherTemplate';
 
-class AddedLinesWatcher extends React.Component {
+class Changes extends React.Component {
   render() {
     return (
       <FileWatcherTemplate label="Added lines" />
@@ -9,4 +9,4 @@ class AddedLinesWatcher extends React.Component {
   }
 }
 
-export default AddedLinesWatcher;
+export default Changes;

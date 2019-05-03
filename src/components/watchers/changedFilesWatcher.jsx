@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import chokidar from 'chokidar';
 import FileWatcherTemplate from './fileWatcherTemplate';
 
@@ -11,20 +10,24 @@ class ChangedFilesWatcher extends React.Component {
       changedFiles: 0,
     };
 
+    this.files = [];
+
     this.startWatching = this.startWatching.bind(this);
     this.stopWatching = this.stopWatching.bind(this);
 
     this.watcherTemplate = React.createRef();
-
-    this.startWatching();
   }
 
-  startWatching() {
-    this.watcher = chokidar.watch(this.props.dirPath, { ignored: ['node_modules', '.idea', '.vscode', '.git'] }).on('add', (path) => {
-      const correctedState = this.watcherTemplate.current.state.watcherNumber + 1;
-      this.watcherTemplate.current.setState({
-        watcherNumber: correctedState,
-      });
+  startWatching(dirPath) {
+    this.setState({ changedFiles: 0 });
+    this.watcher = chokidar.watch(dirPath, { ignored: ['node_modules', '.idea', '.vscode', '.git'] }).on('change', (event, path) => {
+      if (!this.files.includes(path)) {
+        const correctedState = this.watcherTemplate.current.state.watcherNumber + 1;
+        this.watcherTemplate.current.setState({
+          watcherNumber: correctedState,
+        });
+        this.files.push(path);
+      }
     });
   }
 
@@ -38,9 +41,5 @@ class ChangedFilesWatcher extends React.Component {
     );
   }
 }
-
-ChangedFilesWatcher.propTypes = {
-  dirPath: PropTypes.string.isRequired,
-};
 
 export default ChangedFilesWatcher;

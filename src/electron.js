@@ -16,7 +16,7 @@ const createWindow = async () => {
     height: 600,
     titleBarStyle: 'hidden',
     frame: util.platform({
-      macos: false,
+      macos: true,
       windows: true,
       linux: true,
     }),

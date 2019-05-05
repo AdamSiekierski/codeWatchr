@@ -25,6 +25,12 @@ class FileWatcherTemplate extends React.Component {
     this.state = {
       watcherNumber: 0,
     };
+
+    this.returnData = this.returnData.bind(this);
+  }
+
+  returnData() {
+    return this.state.watcherNumber;
   }
 
   render() {

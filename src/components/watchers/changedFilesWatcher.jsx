@@ -1,14 +1,11 @@
 import React from 'react';
 import chokidar from 'chokidar';
+import debounce from 'lodash.debounce';
 import FileWatcherTemplate from './fileWatcherTemplate';
 
 class ChangedFilesWatcher extends React.Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      changedFiles: 0,
-    };
 
     this.files = [];
 
@@ -19,16 +16,16 @@ class ChangedFilesWatcher extends React.Component {
   }
 
   startWatching(dirPath) {
-    this.setState({ changedFiles: 0 });
-    this.watcher = chokidar.watch(dirPath, { ignored: ['node_modules', '.idea', '.vscode', '.git'] }).on('change', (event, path) => {
-      if (!this.files.includes(path)) {
+    this.watcherTemplate.current.setState({ watcherNumber: 0 });
+    this.watcher = chokidar.watch(dirPath, { ignored: ['node_modules', '.idea', '.vscode', '.git'] }).on('change', debounce((file) => {
+      if (!this.files.includes(file)) {
         const correctedState = this.watcherTemplate.current.state.watcherNumber + 1;
         this.watcherTemplate.current.setState({
           watcherNumber: correctedState,
         });
-        this.files.push(path);
+        this.files.push(file);
       }
-    });
+    }, 1000));
   }
 
   stopWatching() {

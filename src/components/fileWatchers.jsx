@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import Changes from './watchers/changes';
+import LinesAddedWatcher from './watchers/linesAddedWatcher';
 import ChangedFilesWatcher from './watchers/changedFilesWatcher';
-import CommitsMadeWatcher from './watchers/commitsMadeWatcher';
+import FileSavesWatcher from './watchers/fileSavesWatcher';
 
 const FileWatchersWrapper = styled.div`
   display: flex;
@@ -15,6 +15,8 @@ class FileWatchers extends React.Component {
     super(props);
 
     this.changedFilesWatcher = React.createRef();
+    this.fileSavesWatcher = React.createRef();
+    this.linesAddedWatcher = React.createRef();
 
     this.startWatching = this.startWatching.bind(this);
     this.stopWatching = this.stopWatching.bind(this);
@@ -22,17 +24,21 @@ class FileWatchers extends React.Component {
 
   startWatching(dirPath) {
     this.changedFilesWatcher.current.startWatching(dirPath);
+    this.fileSavesWatcher.current.startWatching(dirPath);
+    this.linesAddedWatcher.current.startWatching(dirPath);
   }
 
   stopWatching() {
-    this.changedFilesWatcher.current.startWatching();
+    this.changedFilesWatcher.current.stopWatching();
+    this.fileSavesWatcher.current.stopWatching();
+    this.linesAddedWatcher.current.stopWatching();
   }
 
   render() {
     return (
       <FileWatchersWrapper>
-        <CommitsMadeWatcher />
-        <Changes />
+        <FileSavesWatcher ref={this.fileSavesWatcher} />
+        <LinesAddedWatcher ref={this.linesAddedWatcher} />
         <ChangedFilesWatcher ref={this.changedFilesWatcher} />
       </FileWatchersWrapper>
     );

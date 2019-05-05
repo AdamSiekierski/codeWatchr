@@ -12,6 +12,7 @@
     "no-plusplus": 0,
     "react/jsx-one-expression-per-line": 0,
     "arrow-body-style": 0,
-    "global-require": 0
+    "global-require": 0,
+    "react/no-access-state-in-setstate": 0
   }
 }
